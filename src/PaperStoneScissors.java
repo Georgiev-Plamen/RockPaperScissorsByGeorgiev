@@ -13,8 +13,12 @@ public class PaperStoneScissors {
         System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
         String playerMove = scanner.nextLine();
 
+
         while (!playerMove.equals("no")) {
 
+        int playerScore = 0;
+        int computerScore = 0;
+        int drawGame = 0;
 
             if (playerMove.equals("r") || playerMove.equals("rock")) {
                 playerMove = Rock;
@@ -56,12 +60,15 @@ public class PaperStoneScissors {
                     (playerMove.equals(Paper) && computerMove.equals(Rock)) ||
                     (playerMove.equals(Scissors) && computerMove.equals(Paper))) {
                 System.out.println("You win.");
+                playerScore++;
             } else if ((computerMove.equals(Rock) && playerMove.equals(Rock)) ||
                     (computerMove.equals(Paper) && playerMove.equals(Paper)) ||
                     computerMove.equals(Scissors) && playerMove.equals(Scissors)) {
                 System.out.println("This game was a draw.");
+                drawGame++;
             } else {
                 System.out.println("You lose.");
+                computerScore++;
             }
             System.out.println();
             System.out.println("Do you want another game ? (yes / no): ");
@@ -71,6 +78,17 @@ public class PaperStoneScissors {
                 playerMove = scanner.nextLine();
             } else {
                 System.out.println("Good Bye !");
+                System.out.println();
+                if (playerScore > 0) {
+                    System.out.printf("You win: %d game/s !", playerScore);
+                }
+                if (computerScore > 0) {
+                    System.out.printf("Computer win: %d game/s !",computerScore);
+                }
+                if (drawGame > 0) {
+                    System.out.printf("You have %d draw game/s !", drawGame);
+                }
+
             }
         }
 
