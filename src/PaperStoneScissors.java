@@ -13,12 +13,13 @@ public class PaperStoneScissors {
         System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
         String playerMove = scanner.nextLine();
 
-
-        while (!playerMove.equals("no")) {
-
         int playerScore = 0;
         int computerScore = 0;
         int drawGame = 0;
+
+        while (!playerMove.equals("no")) {
+
+
 
             if (playerMove.equals("r") || playerMove.equals("rock")) {
                 playerMove = Rock;
@@ -76,17 +77,18 @@ public class PaperStoneScissors {
             if (playerMove.equals("yes")) {
                 System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
                 playerMove = scanner.nextLine();
+                continue;
             } else {
                 System.out.println("Good Bye !");
                 System.out.println();
                 if (playerScore > 0) {
-                    System.out.printf("You win: %d game/s !", playerScore);
+                    System.out.printf("You win: %d game!%n", playerScore);
                 }
                 if (computerScore > 0) {
-                    System.out.printf("Computer win: %d game/s !",computerScore);
+                    System.out.printf("Computer win: %d game!%n",computerScore);
                 }
                 if (drawGame > 0) {
-                    System.out.printf("You have %d draw game/s !", drawGame);
+                    System.out.printf("You have %d draw game!%n", drawGame);
                 }
 
             }
