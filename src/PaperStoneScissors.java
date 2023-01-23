@@ -19,17 +19,21 @@ public class PaperStoneScissors {
 
         while (!playerMove.equals("no")) {
 
-
-
-            if (playerMove.equals("r") || playerMove.equals("rock")) {
-                playerMove = Rock;
-            } else if (playerMove.equals("p") || playerMove.equals("paper")) {
-                playerMove = Paper;
-            } else if (playerMove.equals("s") || playerMove.equals("scissors")) {
-                playerMove = Scissors;
-            } else {
-                System.out.println("Invalid Input. Try Again...");
-                return;
+            boolean itsInputOk = false;
+            while (!itsInputOk) {
+                if (playerMove.equals("r") || playerMove.equals("rock")) {
+                    playerMove = Rock;
+                    itsInputOk = true;
+                } else if (playerMove.equals("p") || playerMove.equals("paper")) {
+                    playerMove = Paper;
+                    itsInputOk = true;
+                } else if (playerMove.equals("s") || playerMove.equals("scissors")) {
+                    playerMove = Scissors;
+                    itsInputOk = true;
+                } else {
+                    System.out.println("Invalid Input. Try Again...");
+                    playerMove = scanner.next();
+                }
             }
 
             Random random = new Random();
@@ -57,40 +61,45 @@ public class PaperStoneScissors {
                 System.out.printf("The computer chose %s.%n", computerMove);
             }
 
-            if ((playerMove.equals(Rock) && computerMove.equals(Scissors)) ||
-                    (playerMove.equals(Paper) && computerMove.equals(Rock)) ||
-                    (playerMove.equals(Scissors) && computerMove.equals(Paper))) {
+            if ((playerMove.equals(Rock) && computerMove.equals(Scissors)) || (playerMove.equals(Paper) && computerMove.equals(Rock)) || (playerMove.equals(Scissors) && computerMove.equals(Paper))) {
                 System.out.println("You win.");
                 playerScore++;
-            } else if ((computerMove.equals(Rock) && playerMove.equals(Rock)) ||
-                    (computerMove.equals(Paper) && playerMove.equals(Paper)) ||
-                    computerMove.equals(Scissors) && playerMove.equals(Scissors)) {
+            } else if ((computerMove.equals(Rock) && playerMove.equals(Rock)) || (computerMove.equals(Paper) && playerMove.equals(Paper)) || computerMove.equals(Scissors) && playerMove.equals(Scissors)) {
                 System.out.println("This game was a draw.");
                 drawGame++;
             } else {
                 System.out.println("You lose.");
                 computerScore++;
             }
+
             System.out.println();
             System.out.println("Do you want another game ? (yes / no): ");
+
             playerMove = scanner.nextLine();
+            boolean itExitInputOk = false;
+
+            while (!itExitInputOk)
             if (playerMove.equals("yes")) {
                 System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
                 playerMove = scanner.nextLine();
+                itExitInputOk = true;
                 continue;
-            } else {
+            } else if (playerMove.equals("no")) {
                 System.out.println("Good Bye !");
                 System.out.println();
                 if (playerScore > 0) {
                     System.out.printf("You win: %d game!%n", playerScore);
                 }
                 if (computerScore > 0) {
-                    System.out.printf("Computer win: %d game!%n",computerScore);
+                    System.out.printf("Computer win: %d game!%n", computerScore);
                 }
                 if (drawGame > 0) {
                     System.out.printf("You have %d draw game!%n", drawGame);
                 }
-
+                itExitInputOk = true;
+            } else {
+                System.out.println("Invalid Input, please try again ..." );
+                playerMove = scanner.next();
             }
         }
 
